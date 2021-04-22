@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 //import $ from "jquery";
 export default function Home() {
   const [data, setdata] = useState([]);
-  const [openMsg, setOpenmsg] = useState("Insert");
+  const [openMsg, setOpenmsg] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -110,8 +110,12 @@ export default function Home() {
       .then((response) => {
         console.log(response.data);
         if (response.data.length === 0) {
+          setOpenmsg(true);
           save();
-        } else setdata(response.data);
+        } else {
+          setdata(response.data);
+          setOpenmsg(false);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -165,6 +169,7 @@ export default function Home() {
         >
           Remove All
         </button>
+        {openMsg && <div>Data not Found....</div>}
         <table className="table table-hover">
           <thead>
             <tr>

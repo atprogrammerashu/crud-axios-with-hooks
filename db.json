@@ -1,3 +1,19 @@
 {
-  "Users": []
+  "Users": [
+    {
+      "Name": "Ramesh",
+      "Address": "Yampur",
+      "id": 1
+    },
+    {
+      "Name": "Nagina",
+      "Address": "qrat sdv",
+      "id": 2
+    },
+    {
+      "Name": "Mom",
+      "Address": "Tikamgad",
+      "id": 3
+    }
+  ]
 }
