@@ -4,7 +4,6 @@ import Mymethods from "../Mymethods";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { compose } from "redux";
 
 //import $ from "jquery";
 export default function Home() {
@@ -120,17 +119,18 @@ export default function Home() {
   };
 
   const removeAllTutorials = () => {
-    const delData = async () => {
-      await Mymethods.removeAll()
-        .then((response) => {
-          console.log(response.data);
-          save();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
-    delData();
+    setdata("");
+    Mymethods.getAll()
+      .then((response) => {
+        for (var i = 0; i < response.data.length; i++) {
+          Mymethods.remove(response.data[i].id).then((res) => {
+            console.log(res);
+          });
+        }
+      })
+      .catch((e) => {
+        console.log(e.data.errors);
+      });
   };
 
   return (
